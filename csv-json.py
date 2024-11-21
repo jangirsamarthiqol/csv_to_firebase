@@ -71,5 +71,5 @@ def csv_to_json(csv_file_path, json_file_path):
 
 # Example usage
 csv_file_path = 'acn.csv'  # Replace with your CSV file path
-json_file_path = r'D:\Development\csv-to-json\output.json'  # Replace with desired JSON file path
+json_file_path = r'output.json'  # Replace with desired JSON file path
 csv_to_json(csv_file_path, json_file_path)
