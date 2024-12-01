@@ -34,7 +34,7 @@ def csv_to_json(csv_file_path, json_file_path):
         "sbua": "int",
         "totalAskPrice": "float",
         "askPricePerSqft": "float",
-        "geOfInventory": "int",
+        "ageOfInventory": "int",
         "ageOfStatus": "int"
     }
     
@@ -66,6 +66,6 @@ def csv_to_json(csv_file_path, json_file_path):
     print(f"Conversion warnings logged in 'conversion_warnings.log'")
 
 # Example usage
-csv_file_path = 'acn.csv'  # Replace with your CSV file path
+csv_file_path = 'acnn.csv'  # Replace with your CSV file path
 json_file_path = r'output.json'  # Replace with desired JSON file path
 csv_to_json(csv_file_path, json_file_path)

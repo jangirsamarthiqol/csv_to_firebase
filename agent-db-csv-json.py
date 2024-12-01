@@ -52,6 +52,15 @@ def clean_phonenumber(value):
     # Return None if phone number is not valid
     return None
 
+def parse_area_of_operation(value):
+    """
+    Splits the 'areaOfOperation' field into an array of strings.
+    Assumes the values are comma-separated.
+    """
+    if not value or value.strip() in ['--', '']:
+        return []
+    return [area.strip() for area in value.split(',') if area.strip()]
+
 def csv_to_json(csv_file_path, json_file_path):
     data = []
     warnings = []
@@ -59,7 +68,7 @@ def csv_to_json(csv_file_path, json_file_path):
     # Define the fields that should be converted to integers or floats
     numeric_fields = {
         "dailyCredits": "int",
-        "monthlyCredits": "int",
+        "monthlyCredits": "int",     # Added monthlyCredits
         "added": "int",              # Treat 'added' as an integer
         "lastModified": "int"        # Treat 'lastModified' as an integer
     }
@@ -101,6 +110,10 @@ def csv_to_json(csv_file_path, json_file_path):
                 else:
                     row[field] = None
                     warnings.append(f"Row {row_num}: Could not convert '{field}' with value '{original_value}' to boolean")
+            
+            # Handle areaOfOperation
+            area_of_operation = row.get("areaOfOperation", "").strip()
+            row["areaOfOperation"] = parse_area_of_operation(area_of_operation)
             
             data.append(row)
     
